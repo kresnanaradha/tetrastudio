@@ -40,9 +40,7 @@ export function Process() {
             return (
               <li
                 key={step.title}
-                className={`flex flex-col rounded-2xl border p-6 transition duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03] hover:border-gold/50 hover:bg-offwhite/[0.09] motion-reduce:transform-none motion-reduce:transition-none ${
-                  step.emphasis ? 'border-gold/40 bg-offwhite/[0.07]' : 'border-offwhite/10 bg-offwhite/[0.04]'
-                }`}
+                className={`flex flex-col rounded-2xl border p-6 transition duration-300 ease-out hover:-translate-y-1 hover:scale-[1.03] hover:border-gold/50 hover:bg-offwhite/[0.09] motion-reduce:transform-none motion-reduce:transition-none border-offwhite/10 bg-offwhite/[0.04]`}
               >
                 <div className="flex items-center justify-between">
                   <span className="grid size-11 place-items-center rounded-xl bg-offwhite/[0.08]">

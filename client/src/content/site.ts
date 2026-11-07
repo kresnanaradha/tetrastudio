@@ -5,7 +5,7 @@
 export type NavLink = { label: string; href: `#${string}` }
 // action: tombol di kartu layanan yang tersedia. 'paket' = ke bagian Paket, 'whatsapp' = chat konsultasi.
 export type Service = { pillar: string; title: string; description: string; available: boolean; action?: 'paket' | 'whatsapp' }
-export type Step = { title: string; description: string; points: string[]; emphasis?: boolean }
+export type Step = { title: string; description: string; points: string[] }
 export type PackageId = 'basic' | 'standar' | 'premium'
 export type Package = { id: PackageId; name: string; tagline: string; highlighted: boolean }
 type Cell = boolean | string
@@ -161,7 +161,6 @@ export const site = {
         description:
           'Dari obrolan itu, kami buatkan gambaran website-nya lebih dulu, supaya kamu bisa menilai arah desainnya dengan mata sendiri.',
         points: ['Lihat hasilnya sebelum memutuskan', 'Tanpa kewajiban melanjutkan', 'Masukanmu jadi bahan penyempurnaan'],
-        emphasis: true,
       },
       {
         title: 'Deal',
