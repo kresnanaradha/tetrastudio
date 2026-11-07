@@ -1,0 +1,73 @@
+{
+  "width": 390,
+  "viewport": 844,
+  "nav": 64,
+  "height": 11497,
+  "tiles": [
+    {
+      "src": "page-0.png",
+      "top": 0
+    },
+    {
+      "src": "page-1.png",
+      "top": 844
+    },
+    {
+      "src": "page-2.png",
+      "top": 1688
+    },
+    {
+      "src": "page-3.png",
+      "top": 2532
+    },
+    {
+      "src": "page-4.png",
+      "top": 3376
+    },
+    {
+      "src": "page-5.png",
+      "top": 4220
+    },
+    {
+      "src": "page-6.png",
+      "top": 5064
+    },
+    {
+      "src": "page-7.png",
+      "top": 5908
+    },
+    {
+      "src": "page-8.png",
+      "top": 6752
+    },
+    {
+      "src": "page-9.png",
+      "top": 7596
+    },
+    {
+      "src": "page-10.png",
+      "top": 8440
+    },
+    {
+      "src": "page-11.png",
+      "top": 9284
+    },
+    {
+      "src": "page-12.png",
+      "top": 10128
+    },
+    {
+      "src": "page-13.png",
+      "top": 10653
+    }
+  ],
+  "stops": [
+    0,
+    1167,
+    2523,
+    4586,
+    6558,
+    8049,
+    9776
+  ]
+}

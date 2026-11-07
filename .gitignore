@@ -2,3 +2,6 @@ node_modules
 dist
 .env
 dist-ssr
+promo
+video/out
+video/public/page-*.png

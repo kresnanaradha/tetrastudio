@@ -40,7 +40,7 @@ export function Packages() {
         <table className="mt-10 w-full table-fixed border-collapse text-sm sm:text-base lg:mt-12">
           <caption className="sr-only">{p.title}</caption>
           <colgroup>
-            <col className="w-[40%] sm:w-[34%]" />
+            <col className="w-[36%] sm:w-[34%]" />
             <col />
             <col />
             <col />
@@ -51,11 +51,11 @@ export function Packages() {
                 {p.featureLabel}
               </th>
               {p.items.map((pkg, i) => (
-                <th key={pkg.id} scope="col" className={`px-2 pt-4 pb-5 align-bottom ${hl(i)}`}>
+                <th key={pkg.id} scope="col" className={`px-1 pt-4 pb-5 align-bottom sm:px-2 ${hl(i)}`}>
                   {pkg.highlighted && (
                     <span className="mb-2 block text-xs font-semibold text-navy">{p.popular}</span>
                   )}
-                  <span className="block text-xl font-display font-medium text-navy sm:text-3xl">{pkg.name}</span>
+                  <span className="block text-base font-display font-medium text-navy sm:text-2xl lg:text-3xl">{pkg.name}</span>
                   <span className="mx-auto mt-2 hidden max-w-[16rem] text-sm leading-snug font-normal text-muted md:block">{pkg.tagline}</span>
                 </th>
               ))}
