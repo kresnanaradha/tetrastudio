@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: aktifkan setelah domain final
+# Sitemap: https://DOMAIN/sitemap.xml

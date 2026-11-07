@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* Token brand. Palet bawaan Tailwind dimatikan agar hanya lima warna ini yang bisa dipakai. */
+@theme {
+  --color-*: initial;
+  --color-navy: #1e3a5f;
+  --color-gold: #b8975a;
+  --color-offwhite: #fafaf8;
+  --color-ink: #1f1f1f;
+  --color-muted: #595959;
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    background: var(--color-offwhite);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-navy);
+    outline-offset: 3px;
+  }
+  [data-tone="dark"] :focus-visible {
+    outline-color: var(--color-offwhite);
+  }
+  ::selection {
+    background: var(--color-navy);
+    color: var(--color-offwhite);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/*
+  Scroll Statement (PRD Bagian 5.13).
+  Diadaptasi dari demo publik "you can scroll" karya jh3yy. Semua gaya dicakup ke .scroll-statement,
+  tidak ada yang diubah di elemen html.
+*/
+.scroll-statement {
+  --ss-line: 50svh; /* garis tempat kata menyala */
+  font-size: clamp(1.75rem, 5vw + 0.75rem, 5rem);
+  line-height: 1.2;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  overflow-x: clip;
+}
+.scroll-statement .ss-row {
+  display: flex;
+}
+.scroll-statement .ss-title {
+  position: sticky;
+  top: calc(var(--ss-line) - 0.5lh);
+  height: fit-content;
+  margin: 0;
+  font: inherit;
+  white-space: nowrap;
+  color: var(--color-ink);
+}
+.scroll-statement ul {
+  margin: 0;
+  padding: calc(var(--ss-line) - 0.5lh) 0;
+  list-style: none;
+  color: var(--color-navy);
+}
+
+/*
+  Varian Hero: kata besar, judul diam lebih kecil. Garis menyala di 30% tinggi layar,
+  supaya subjudul dan CTA di bawah kata-kata tetap terlihat di layar pertama.
+*/
+.ss-hero {
+  --ss-line: 30svh;
+  font-size: clamp(3.25rem, min(15vw, 16svh), 10rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+.ss-hero .ss-title {
+  font-size: 0.4em;
+  line-height: 2.55; /* sama tinggi dengan baris kata: 1.02 / 0.4 */
+  letter-spacing: -0.01em;
+  font-style: italic;
+  font-weight: 400;
+}
+.ss-hero ul {
+  /* 4rem = tinggi navbar. Kata pertama mulai tepat di garis menyala. */
+  padding-top: max(5rem, calc(var(--ss-line) - 0.5lh - 4rem));
+  padding-bottom: 0;
+}
+
+@supports (animation-timeline: view()) and (animation-range: 0% 100%) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-statement li {
+      animation: ss-brighten linear both;
+      animation-timeline: view();
+      animation-range: cover calc(50% - 1lh) calc(50% + 1lh);
+    }
+    .scroll-statement li:first-child {
+      --start-opacity: 1;
+    }
+    .scroll-statement li:last-child {
+      --end-opacity: 1;
+    }
+    /* Inset bawah 40% menggeser titik tengah view ke 30% layar, sesuai --ss-line hero. */
+    .ss-hero li {
+      animation-timeline: view(block 0% 40%);
+    }
+  }
+}
+
+/* Kartu proyek bergulir: dua salinan daftar digeser -50% agar sambungannya tidak terlihat. */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  gap: var(--marquee-gap, 1.5rem);
+  width: max-content;
+  padding-block: 0.5rem;
+}
+.marquee-track > li {
+  flex: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+  }
+}
+@keyframes marquee {
+  to { transform: translateX(calc(-50% - var(--marquee-gap, 1.5rem) / 2)); }
+}
+
+@keyframes ss-brighten {
+  0% { opacity: var(--start-opacity, 0.2); }
+  50% { opacity: 1; }
+  100% { opacity: var(--end-opacity, 0.2); }
+}

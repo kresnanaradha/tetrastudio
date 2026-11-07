@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 88">
+  <mask id="m">
+    <path d="M50 0 100 88H0Z" fill="#fff"/>
+    <path d="M52 3 50 48M21 50 42 63M58 60 80 54M44 68 33 88M60 67 76 88" stroke="#000" stroke-width="4"/>
+    <path d="M50 45 63 69H37Z" fill="#000"/>
+  </mask>
+  <path d="M50 0 100 88H0Z" fill="#1e3a5f" mask="url(#m)"/>
+  <path d="M50 51 58.5 66h-17Z" fill="#b8975a"/>
+</svg>

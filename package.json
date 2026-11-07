@@ -1,0 +1,13 @@
+{
+  "name": "tetra-studio",
+  "private": true,
+  "workspaces": [
+    "client"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w client",
+    "build": "npm run build -w client",
+    "preview": "npm run preview -w client",
+    "check:dashes": "node scripts/check-dashes.mjs"
+  }
+}

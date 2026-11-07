@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tetra-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "preview", "client", "--port", "4173", "--strictPort"],
+      "port": 4173
+    },
+    {
+      "name": "tetra-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "client", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}
