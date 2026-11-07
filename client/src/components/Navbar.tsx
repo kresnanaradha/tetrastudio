@@ -38,7 +38,7 @@ export function Navbar() {
           href={link.href}
           onClick={() => setOpen(false)}
           aria-current={current ? 'location' : undefined}
-          className={`flex min-h-11 items-center border-b-2 font-medium transition-colors lg:text-sm ${
+          className={`flex min-h-11 items-center border-b-2 font-medium transition-colors lg:text-[1.0625rem] ${
             current ? 'border-gold text-navy' : 'border-transparent text-ink/80 hover:text-navy'
           }`}
         >
@@ -52,17 +52,17 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-navy/10 bg-offwhite">
       <div className={`${wrap} flex h-16 items-center justify-between gap-6`}>
         <a href="#beranda" aria-label={site.nav.homeLabel} className="flex min-h-11 items-center gap-2.5">
-          <Mark className="h-7 w-8 text-navy" />
-          <span className="text-lg font-extrabold tracking-tight whitespace-nowrap text-navy">{site.brand.name}</span>
+          <Mark className="h-8 w-9 text-navy" />
+          <span className="text-xl font-extrabold tracking-tight whitespace-nowrap text-navy">{site.brand.name}</span>
         </a>
 
         <nav aria-label="Utama" className="hidden lg:block">
-          <ul className="flex items-center gap-7">{links}</ul>
+          <ul className="flex items-center gap-8">{links}</ul>
         </nav>
 
         <div className="flex items-center gap-2">
           <div className="hidden sm:block">
-            <WaLink message={site.whatsappMessages.consult} location="navbar" className={`${btn.primary} px-4 text-sm`}>
+            <WaLink message={site.whatsappMessages.consult} location="navbar" className={`${btn.primary} px-5 text-base`}>
               {site.nav.cta}
             </WaLink>
           </div>

@@ -54,6 +54,7 @@ Hosting statis (Vercel, Netlify, atau Cloudflare Pages):
 - **Scroll Statement** (Hero "we craft Pixels. Code. Strategy."; bagian "we can" dari PRD 5.13 dihapus atas permintaan pemilik agar efek tidak muncul dua kali): browser yang mendukung CSS `animation-timeline: view()` memakai CSS murni. Browser lain memuat GSAP lewat dynamic import, jadi `gsap` tidak masuk bundle awal. Tidak memakai Tweakpane dan tidak mengubah elemen `html`. Mati saat `prefers-reduced-motion`.
 - **Analitik**: `track('whatsapp_click', { location })` dipanggil di setiap tombol WhatsApp (`navbar`, `hero`, `paket-basic`, `paket-standar`, `paket-premium`, `karya-empty`, `cta-akhir`, `floating` untuk tombol melayang, `layanan-automation`, `footer`). Saat ini hanya mencatat ke console di development.
 - **Font**: Newsreader (judul) dan Hanken Grotesk (isi) dari Google Fonts dengan `display=swap`. Bisa dipindah ke self-hosted bila diinginkan.
+- **SEO**: domain ditulis sekali di `brand.url` (`site.ts`). Saat build, `scripts/prerender.mjs` mengisi canonical, `og:url`, `og:image`, JSON-LD, `robots.txt`, dan `sitemap.xml` dengan domain itu, serta membuat data terstruktur FAQPage dari isi FAQ. Ganti domain cukup di satu baris itu.
 - **Prerender**: setelah build, `scripts/prerender.mjs` merender React ke HTML statis di `client/dist/index.html` (memakai `react-dom/server` yang sudah terpasang, tanpa plugin). Isi halaman terbaca Google tanpa JavaScript, lalu React meng-hydrate di browser.
 - **FAQ** memakai `<details>` bawaan browser (aksesibel dengan keyboard tanpa JavaScript).
 
@@ -64,11 +65,11 @@ Data (cari teks `TODO` di `site.ts`):
 - [ ] Daftar karya (`work.items`), dengan izin klien untuk proyek klien
 - [ ] Apakah Pixels dan Strategy sudah dijual (`services.items[].available`)
 
-Domain (setelah domain final):
-- [ ] `<link rel="canonical">` di `client/index.html`
-- [ ] URL absolut `og:image` dan `twitter:image`
-- [ ] `url` dan `logo` di JSON-LD
-- [ ] `client/public/sitemap.xml` dan baris `Sitemap:` di `robots.txt`
+SEO setelah live (tidak bisa dari kode):
+- [ ] Daftarkan https://buildwithtetra.com di Google Search Console (properti Domain, verifikasi lewat DNS), lalu kirim `sitemap.xml`
+- [ ] Buat Google Business Profile "Tetra Studio" di Bali
+- [ ] Pasang link buildwithtetra.com di bio Instagram @buildwithtetra
+- [ ] Pastikan http://buildwithtetra.com diarahkan ke https (saat ini tidak merespons)
 
 Aset dan keputusan:
 - [ ] Tangkapan layar karya untuk menggantikan mockup CSS di Hero (`Hero.tsx`, WebP dengan `width`, `height`, `fetchpriority="high"`)

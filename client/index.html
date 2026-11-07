@@ -3,50 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tetra Studio | Jasa Pembuatan Website di Bali</title>
+    <title>Jasa Pembuatan Website di Bali | Tetra Studio</title>
     <meta
       name="description"
-      content="Tetra Studio, agensi kreatif dan teknologi di Bali. Jasa pembuatan website bisnis yang cepat dan rapi. Lihat preview gratis dulu, baru putuskan."
+      content="Jasa pembuatan website di Bali untuk bisnis: cepat, rapi, dan siap ditemukan di Google. Plus automation n8n. Lihat preview gratis dulu, baru putuskan."
     />
     <meta name="theme-color" content="#1e3a5f" />
-    <!-- TODO: tambahkan <link rel="canonical" href="https://DOMAIN/"> setelah domain final -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <!-- __SITE_URL__ diisi otomatis saat build dari brand.url di src/content/site.ts -->
+    <link rel="canonical" href="__SITE_URL__/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/images/logo-tetra.jpg" />
 
-    <!-- Open Graph dan Twitter card. TODO: ubah URL gambar menjadi absolut (https://DOMAIN/og-image.png) setelah domain final -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="Tetra Studio" />
-    <meta property="og:title" content="Tetra Studio | Jasa Pembuatan Website di Bali" />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:title" content="Jasa Pembuatan Website di Bali | Tetra Studio" />
     <meta
       property="og:description"
       content="Website bisnis yang cepat, rapi, dan siap dipakai. Lihat preview gratis dulu, baru putuskan."
     />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="__SITE_URL__/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Tetra Studio: Pixels. Code. Strategy." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tetra Studio | Jasa Pembuatan Website di Bali" />
+    <meta name="twitter:title" content="Jasa Pembuatan Website di Bali | Tetra Studio" />
     <meta
       name="twitter:description"
       content="Website bisnis yang cepat, rapi, dan siap dipakai. Lihat preview gratis dulu, baru putuskan."
     />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image" content="__SITE_URL__/og-image.png" />
 
-    <!-- Data terstruktur. TODO: tambahkan "url" dan "logo" setelah domain final -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Tetra Studio",
-        "description": "Agensi kreatif dan teknologi di Bali yang membuat website untuk bisnis.",
-        "email": "buildwithtetra@gmail.com",
-        "telephone": "+6281339300119",
-        "sameAs": ["https://www.instagram.com/buildwithtetra"],
-        "areaServed": { "@type": "AdministrativeArea", "name": "Bali" },
-        "address": { "@type": "PostalAddress", "addressRegion": "Bali", "addressCountry": "ID" }
+        "@graph": [
+          {
+            "@type": "ProfessionalService",
+            "@id": "__SITE_URL__/#bisnis",
+            "name": "Tetra Studio",
+            "url": "__SITE_URL__/",
+            "logo": "__SITE_URL__/images/logo-tetra.jpg",
+            "image": "__SITE_URL__/og-image.png",
+            "description": "Jasa pembuatan website di Bali: desain UI/UX, web development, dan workflow automation dengan n8n untuk bisnis.",
+            "email": "buildwithtetra@gmail.com",
+            "telephone": "+6281339300119",
+            "sameAs": ["https://www.instagram.com/buildwithtetra"],
+            "areaServed": { "@type": "AdministrativeArea", "name": "Bali" },
+            "address": { "@type": "PostalAddress", "addressRegion": "Bali", "addressCountry": "ID" },
+            "knowsAbout": ["Jasa pembuatan website", "Desain UI/UX", "Web development", "SEO dasar", "Workflow automation", "n8n"],
+            "makesOffer": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Jasa Pembuatan Website", "areaServed": "Bali" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Workflow Automation dengan n8n", "areaServed": "Bali" } }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "__SITE_URL__/#website",
+            "url": "__SITE_URL__/",
+            "name": "Tetra Studio",
+            "inLanguage": "id-ID",
+            "publisher": { "@id": "__SITE_URL__/#bisnis" }
+          }
+        ]
       }
     </script>
+    <!-- FAQ_JSONLD -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

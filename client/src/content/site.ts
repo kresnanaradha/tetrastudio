@@ -33,6 +33,8 @@ export const contact = {
 export const site = {
   brand: {
     name: 'Tetra Studio',
+    // Domain utama website. Dipakai otomatis untuk canonical, sitemap, robots.txt, gambar share, dan data terstruktur.
+    url: 'https://buildwithtetra.com',
     tagline: 'Pixels. Code. Strategy.',
     description:
       'Agensi kreatif dan teknologi di Bali yang merancang ekosistem digital terintegrasi, digerakkan oleh tiga kolaborator lintas disiplin.',
@@ -69,11 +71,11 @@ export const site = {
     headline: ['Pixels.', 'Code.', 'Strategy.'],
     srHeadline: 'Pixels. Code. Strategy. Tetra Studio, jasa pembuatan website di Bali.',
     subtitle:
-      'Tetra Studio merancang dan membangun website untuk bisnis: cepat dibuka di HP, rapi dilihat, dan jelas mengarahkan pengunjung untuk menghubungimu. Bedanya, kami buatkan preview-nya lebih dulu. Lihat dulu hasilnya, baru putuskan.',
+      'Jasa pembuatan website di Bali untuk bisnis yang ingin tampil profesional: cepat dibuka di HP, rapi dilihat, dan jelas mengarahkan pengunjung untuk menghubungimu. Bedanya, kami buatkan preview-nya lebih dulu. Lihat dulu hasilnya, baru putuskan.',
     primaryCta: 'Konsultasi Gratis',
     secondaryCta: 'Lihat Cara Kerja',
     ctaNote: 'Konsultasi dan preview gratis, tanpa kewajiban lanjut.',
-    meta: ['Bali, Indonesia', 'Website untuk bisnis', 'Jalur build-first'],
+    meta: ['Bali, Indonesia', 'Jasa pembuatan website', 'Jalur build-first'],
   },
 
   why: {
@@ -105,7 +107,7 @@ export const site = {
     label: 'Layanan',
     title: 'Yang kami kerjakan.',
     intro:
-      'Tetra Studio digerakkan oleh tiga kolaborator lintas disiplin: visual, teknologi, dan strategi. Saat ini fokus kami adalah website dan otomatisasi alur kerja, dirancang khusus untuk bisnismu, bukan template yang sama untuk semua orang.',
+      'Tetra Studio adalah studio kreatif dan teknologi di Bali, digerakkan oleh tiga kolaborator lintas disiplin: visual, teknologi, dan strategi. Saat ini fokus kami adalah website dan otomatisasi alur kerja, dirancang khusus untuk bisnismu, bukan template yang sama untuk semua orang.',
     comingSoon: 'Segera Hadir',
     cta: 'Lihat Paket',
     ctaWhatsapp: 'Konsultasi Automation',
@@ -231,6 +233,8 @@ export const site = {
     empty: 'Karya pertama kami sedang dikerjakan. Mau jadi yang berikutnya?',
     emptyCta: 'Ngobrol di WhatsApp',
     visit: 'Lihat proyek',
+    prev: 'Proyek sebelumnya',
+    next: 'Proyek berikutnya',
     // TODO: isi daftar proyek. Proyek klien hanya boleh tampil dengan izin klien.
     // Contoh satu item:
     // {

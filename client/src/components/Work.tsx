@@ -1,4 +1,5 @@
-import { ArrowUpRight } from 'lucide-react'
+import { useEffect, useRef } from 'react'
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { site, type WorkItem } from '@/content/site'
 import { SectionHead, Tri, WaIcon, WaLink, btn, wrap } from './shared'
 
@@ -57,20 +58,158 @@ function ProjectCard({ item, hidden = false }: { item: WorkItem; hidden?: boolea
   )
 }
 
-/** Kartu proyek yang bergulir tanpa henti (CSS murni, berhenti saat di-hover). */
+/** Jarak antara awal daftar dan awal salinannya, yaitu panjang satu putaran. */
+const loopWidth = (el: HTMLElement) => {
+  const copy = el.querySelector<HTMLElement>('[data-copy]')
+  const first = el.querySelector<HTMLElement>('li')
+  return copy && first ? copy.offsetLeft - first.offsetLeft : 0
+}
+
+const SPEED = 0.04 // piksel per milidetik (sekitar 40px per detik)
+const RESUME_AFTER = 2500 // jeda sebelum bergulir lagi setelah pengunjung berinteraksi (ms)
+
+/**
+ * Kartu proyek yang bergulir otomatis, tapi tetap bisa digeser pengunjung:
+ * swipe di HP, scroll trackpad, drag mouse, atau tombol panah.
+ * Daftar ditampilkan dua kali; saat posisi melewati salinan pertama, posisinya diputar balik tanpa terlihat.
+ */
 function ProjectMarquee({ items }: { items: WorkItem[] }) {
+  const scroller = useRef<HTMLDivElement>(null)
+  const paused = useRef(false)
+  const resumeTimer = useRef<number>(0)
+  const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false })
+
+  const pause = () => {
+    paused.current = true
+    window.clearTimeout(resumeTimer.current)
+  }
+  const resumeLater = (ms = RESUME_AFTER) => {
+    window.clearTimeout(resumeTimer.current)
+    resumeTimer.current = window.setTimeout(() => (paused.current = false), ms)
+  }
+
+  // Posisi yang dituju tombol panah. Dianimasikan di loop yang sama dengan gerak otomatis,
+  // karena scroll "smooth" bawaan browser dibatalkan setiap kali posisi scroll ditulis ulang.
+  const target = useRef<number | null>(null)
+  const pos = useRef(0)
+
+  useEffect(() => {
+    const el = scroller.current
+    if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let raf = 0
+    let last = performance.now()
+    pos.current = el.scrollLeft
+    const tick = (now: number) => {
+      const dt = Math.min(now - last, 64)
+      last = now
+      if (target.current !== null) {
+        pos.current += (target.current - pos.current) * Math.min(1, dt / 90)
+        if (Math.abs(target.current - pos.current) < 0.5) {
+          pos.current = target.current
+          target.current = null
+        }
+        el.scrollLeft = pos.current
+      } else if (paused.current) {
+        pos.current = el.scrollLeft
+      } else {
+        const loop = loopWidth(el)
+        pos.current += dt * SPEED
+        if (loop && pos.current >= loop) pos.current -= loop
+        el.scrollLeft = pos.current
+      }
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.clearTimeout(resumeTimer.current)
+    }
+  }, [])
+
+  const step = (dir: 1 | -1) => {
+    const el = scroller.current
+    const card = el?.querySelector('li')
+    if (!el || !card) return
+    const width = card.getBoundingClientRect().width + 24
+    const loop = loopWidth(el)
+    // Lompat ke posisi yang sama di salinan bila perlu, supaya selalu bisa maju dan mundur.
+    let start = target.current ?? el.scrollLeft
+    if (dir < 0 && start < width) start += loop
+    if (dir > 0 && start >= loop) start -= loop
+    el.scrollLeft = start
+    pos.current = start
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.scrollLeft = start + dir * width
+      return
+    }
+    pause()
+    target.current = start + dir * width
+    resumeLater(4000)
+  }
+
   const cards = (copy: boolean) =>
-    items.map((item) => (
-      <li key={`${copy}-${item.title}`} aria-hidden={copy || undefined} className="w-72 sm:w-96">
+    items.map((item, i) => (
+      <li key={`${copy}-${item.title}`} aria-hidden={copy || undefined} data-copy={copy && i === 0 ? '' : undefined} className="w-72 sm:w-96">
         <ProjectCard item={item} hidden={copy} />
       </li>
     ))
+
   return (
-    <div className="marquee mt-10">
-      <ul className="marquee-track">
-        {cards(false)}
-        {cards(true)}
-      </ul>
+    <div className="mt-8">
+      <div className={`${wrap} mb-6 flex justify-end gap-2`}>
+        {([-1, 1] as const).map((dir) => (
+          <button
+            key={dir}
+            type="button"
+            onClick={() => step(dir)}
+            aria-label={dir < 0 ? work.prev : work.next}
+            className="inline-flex size-11 items-center justify-center rounded-full border border-navy/20 text-navy transition-colors hover:border-gold hover:bg-gold"
+          >
+            {dir < 0 ? <ChevronLeft className="size-5" aria-hidden="true" /> : <ChevronRight className="size-5" aria-hidden="true" />}
+          </button>
+        ))}
+      </div>
+      <div
+        ref={scroller}
+        className="marquee"
+        onPointerEnter={(e) => e.pointerType === 'mouse' && pause()}
+        onPointerLeave={(e) => {
+          drag.current.active = false
+          if (e.pointerType === 'mouse') resumeLater(600)
+        }}
+        onPointerDown={(e) => {
+          pause()
+          if (e.pointerType === 'mouse') {
+            drag.current = { active: true, startX: e.clientX, startLeft: e.currentTarget.scrollLeft, moved: false }
+          }
+        }}
+        onPointerMove={(e) => {
+          const d = drag.current
+          if (!d.active) return
+          const dx = e.clientX - d.startX
+          if (Math.abs(dx) > 5) d.moved = true
+          e.currentTarget.scrollLeft = d.startLeft - dx
+        }}
+        onPointerUp={(e) => {
+          drag.current.active = false
+          if (e.pointerType !== 'mouse') resumeLater()
+        }}
+        onClickCapture={(e) => {
+          // Klik setelah drag tidak membuka tautan proyek.
+          if (drag.current.moved) {
+            e.preventDefault()
+            e.stopPropagation()
+            drag.current.moved = false
+          }
+        }}
+        onFocusCapture={pause}
+        onBlurCapture={() => resumeLater()}
+      >
+        <ul className="marquee-track">
+          {cards(false)}
+          {cards(true)}
+        </ul>
+      </div>
     </div>
   )
 }

@@ -120,35 +120,32 @@
   }
 }
 
-/* Kartu proyek bergulir: dua salinan daftar digeser -50% agar sambungannya tidak terlihat. */
+/* Kartu proyek: area scroll horizontal yang digeser otomatis lewat JavaScript (Work.tsx). */
 .marquee {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee::-webkit-scrollbar {
+  display: none;
+}
+.marquee:active {
+  cursor: grabbing;
+}
+.marquee img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 .marquee-track {
   display: flex;
-  gap: var(--marquee-gap, 1.5rem);
+  gap: 1.5rem;
   width: max-content;
-  padding-block: 0.5rem;
+  padding: 0.5rem 1.25rem;
 }
 .marquee-track > li {
   flex: none;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .marquee-track {
-    animation: marquee 30s linear infinite;
-  }
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee {
-    overflow-x: auto;
-  }
-}
-@keyframes marquee {
-  to { transform: translateX(calc(-50% - var(--marquee-gap, 1.5rem) / 2)); }
 }
 
 @keyframes ss-brighten {
