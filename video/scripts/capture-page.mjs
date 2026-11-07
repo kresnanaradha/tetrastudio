@@ -8,7 +8,7 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 
-const url = process.argv[2] ?? 'https://tetra.naradh.my.id/'
+const url = process.argv[2] ?? 'https://buildwithtetra.com/'
 const root = join(import.meta.dirname, '..')
 const pub = join(root, 'public')
 mkdirSync(pub, { recursive: true })

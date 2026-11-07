@@ -7,7 +7,7 @@ Folder ini terpisah dari website (bukan bagian npm workspaces), jadi dependency 
 ```bash
 cd video
 npm install
-npm run capture   # ambil ulang screenshot halaman HP dari https://tetra.naradh.my.id (butuh Google Chrome)
+npm run capture   # ambil ulang screenshot halaman HP dari https://buildwithtetra.com (butuh Google Chrome)
 npm run studio    # pratinjau dan edit di Remotion Studio
 npm run render    # hasil: ../promo/tetra-live-reels.mp4
 ```

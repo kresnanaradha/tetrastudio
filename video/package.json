@@ -6,7 +6,8 @@
   "scripts": {
     "capture": "node scripts/capture-page.mjs",
     "studio": "remotion studio src/index.ts",
-    "render": "remotion render src/index.ts LiveReel ../promo/tetra-live-reels.mp4"
+    "render": "remotion render src/index.ts LiveReel ../promo/tetra-live-reels.mp4",
+    "stories": "remotion still src/index.ts Story1Live ../promo/story-1-live.png && remotion still src/index.ts Story2Process ../promo/story-2-cara-kerja.png && remotion still src/index.ts Story3Services ../promo/story-3-layanan.png && remotion still src/index.ts Story4Cta ../promo/story-4-konsultasi.png"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.541",
