@@ -242,7 +242,7 @@ export const site = {
     //   url: 'https://contoh.com', // opsional
     // },
     // Kosong: tampil ajakan "Karya pertama kami...". 1 sampai 3 proyek: grid. 4 proyek atau lebih: kartu bergulir.
-    // Simpan screenshot di client/public/images/karya/ (WebP 1280x800: logo proyek di tengah latar #f1f0eb).
+    // Simpan screenshot di client/public/images/karya/ (WebP 1280x800: logo proyek versi emas di tengah latar navy #1e3a5f).
     items: [
       {
         title: 'Bali Water Activity',
