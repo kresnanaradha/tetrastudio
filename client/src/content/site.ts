@@ -26,7 +26,7 @@ export const contact = {
   whatsappDisplay: '0813 3930 0119',
   // Username Instagram tanpa "@"
   instagram: 'buildwithtetra',
-  email: 'buildwithtetra@gmail.com',
+  email: 'admin@buildwithtetra.com',
   location: 'Bali, Indonesia',
 }
 
